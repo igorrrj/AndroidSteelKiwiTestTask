@@ -128,19 +128,12 @@ public class MainActivity extends AppCompatActivity
                 accountManager.removeAccount(account, null, null);
             }
 
-            /*SharedPreferences sp=getSharedPreferences(LOGIN_PREFERENCES, Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor=sp.edit();
-            editor.putBoolean(LOGIN_PREF_KEY,false);
-            boolean ans=sp.getBoolean(LOGIN_PREF_KEY,false);
-            Log.e("BoolExit",ans+"");
-*/
             Intent in = new Intent(this, LoginActivity.class);
             in.addFlags(IntentCompat.FLAG_ACTIVITY_CLEAR_TASK
                     | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(in);
             finish();
             Log.e("EXIT","true");
-
             return false;
 
         }
@@ -154,7 +147,6 @@ public class MainActivity extends AppCompatActivity
         {
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.content_main, fragment).commit();
-
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
