@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -47,10 +48,7 @@ public class MainActivity extends AppCompatActivity
         boolean ans=loginPreferences.getBoolean(LOGIN_PREF_KEY,false);
         Log.e("Bool",ans+"");
 
-        AccountManager accountManager = AccountManager.get(this);
-        Account[] accounts = accountManager.getAccountsByType(getString(R.string.accountType));
-
-        if(!loginPreferences.getBoolean(LOGIN_PREF_KEY,false) || accounts.length==0){
+        if(!loginPreferences.getBoolean(LOGIN_PREF_KEY,false)){
            openLoginScreen();
         }
 
@@ -74,7 +72,6 @@ public class MainActivity extends AppCompatActivity
         startActivity(new Intent(this, LoginActivity.class));
         finish();
     }
-
 
     @Override
     public void onBackPressed() {
@@ -125,12 +122,15 @@ public class MainActivity extends AppCompatActivity
             Account[] gitHubAccounts = accountManager.getAccountsByType(getString(R.string.accountType));
 
             for (Account account : gitHubAccounts) {
-                accountManager.removeAccount(account, null, null);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
+                    accountManager.removeAccountExplicitly(account);
+                }
             }
+            Log.e("ACCOUNTMainActivity",gitHubAccounts.length+"");
 
-            Intent in = new Intent(this, LoginActivity.class);
-            in.addFlags(IntentCompat.FLAG_ACTIVITY_CLEAR_TASK
-                    | Intent.FLAG_ACTIVITY_NEW_TASK);
+            Intent in = new Intent(MainActivity.this, LoginActivity.class);
+            in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+                    | IntentCompat.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(in);
             finish();
             Log.e("EXIT","true");
@@ -165,7 +165,6 @@ public class MainActivity extends AppCompatActivity
 
         new DownloadImageTask((ImageView) header.findViewById(R.id.avatarImage))
                 .execute(userPreferences.getString(USER_PREF_KEY_AVATAR,""));
-
     }
 
     private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {

@@ -56,11 +56,16 @@ public class LoginActivity extends AccountAuthenticatorActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        SharedPreferences sp=getSharedPreferences(LOGIN_PREFERENCES,Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor=sp.edit();
+        editor.putBoolean(LOGIN_PREF_KEY,false);
+        editor.apply();
+        Log.e("Loged?",sp.getBoolean(LOGIN_PREF_KEY,false)+"");
+
         logInButton=(Button)findViewById(R.id.loginButton);
 
         accountManager = AccountManager.get(this);
         accounts = accountManager.getAccountsByType(getString(R.string.accountType));
-
         if (accounts != null && accounts.length > 0) {
             openMain();
         }
@@ -197,7 +202,7 @@ public class LoginActivity extends AccountAuthenticatorActivity {
                     JSONObject jsonObject= new JSONObject(response);
                     SharedPreferences.Editor editor=sharedPreferences.edit();
                     editor.putString(USER_PREF_KEY_LOGIN,jsonObject.getString("login"));
-                    editor.putString(USER_PREF_KEY_AVATAR,jsonObject.getString("avatar_url")+"&s=40");
+                    editor.putString(USER_PREF_KEY_AVATAR,jsonObject.getString("avatar_url"));
                     Log.e("AVATAR",jsonObject.getString("avatar_url"));
                     editor.apply();
 
