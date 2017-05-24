@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group android:checkableBehavior="single">
+    <group android:checkableBehavior="single"
+        android:id="@+id/menu_group">
         <item
             android:id="@+id/nav_user_repos"
             android:icon="@drawable/icon_repo"
@@ -16,14 +17,14 @@
             android:title="About" />
     </group>
 
-    <group
-        android:checkableBehavior="none">
+    <group android:checkableBehavior="single"
+        android:id="@+id/log_out">
             <item
                 android:checkable="false"
                 android:id="@+id/nav_log_out"
                 android:icon="@drawable/ic_menu_log_out"
                 android:title="Log out" />
-        </group>
+    </group>
 
 
 </menu>

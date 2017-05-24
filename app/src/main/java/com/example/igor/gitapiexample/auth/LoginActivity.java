@@ -45,6 +45,9 @@ public class LoginActivity extends AccountAuthenticatorActivity {
     public static final String AUTHTOKEN_TYPE="authtokenType";
     public static final String USERNAME = "username";
 
+    public static final String PARAM_LOGIN="USER_NAME";
+    public static final String PARAM_TOKEN="TOKEN";
+
     ProgressDialog progressDialog;
     SharedPreferences sharedPreferences;
     Button logInButton;
@@ -60,7 +63,6 @@ public class LoginActivity extends AccountAuthenticatorActivity {
         SharedPreferences.Editor editor=sp.edit();
         editor.putBoolean(LOGIN_PREF_KEY,false);
         editor.apply();
-        Log.e("Loged?",sp.getBoolean(LOGIN_PREF_KEY,false)+"");
 
         logInButton=(Button)findViewById(R.id.loginButton);
 
@@ -86,7 +88,6 @@ public class LoginActivity extends AccountAuthenticatorActivity {
         Intent intent = new Intent(this, LoginWebViewActivity.class);
         intent.putExtra(INTENT_EXTRA_URL, gitLoginUrl);
         startActivityForResult(intent, 0);
-        Log.e("Opened Login","true");
         progressDialog.dismiss();
 
     }
@@ -98,8 +99,6 @@ public class LoginActivity extends AccountAuthenticatorActivity {
         {
             onLoginUser(data.getData());
             openLoadingDialog();
-            Log.e("On Activity Result","true");
-            Log.e("Request Code=",requestCode+" | ResutCode= "+resultCode+"");
         }
     }
 
@@ -117,8 +116,6 @@ public class LoginActivity extends AccountAuthenticatorActivity {
             sharedPreferences=getSharedPreferences(USER_PREFERENCES, Context.MODE_PRIVATE);
             String code=uri.getQueryParameter("code");
             sendTokenRequest(ACCESS_TOKEN_URL,code);
-            Log.e("OnLogined User","true");
-
         }
     }
 
@@ -126,12 +123,12 @@ public class LoginActivity extends AccountAuthenticatorActivity {
     {
         String  token;
         token=sharedPreferences.getString(USER_PREF_KEY_TOKEN,"");
-        progressDialog.setMessage("Loading user profile");
-        Log.e("LOGINE",login);
+        progressDialog.setMessage(getString(R.string.dialog_message_profile));
+
         Account account=new Account(login,getString(R.string.accountType));
         Bundle data=new Bundle();
-        data.putString("USER_NAME",login);
-        data.putString("TOKEN",token);
+        data.putString(PARAM_LOGIN,login);
+        data.putString(PARAM_TOKEN,token);
 
         accountManager.addAccountExplicitly(account,null,data);
         accountManager.setAuthToken(account,getString(R.string.accountType),token);
@@ -148,9 +145,6 @@ public class LoginActivity extends AccountAuthenticatorActivity {
         editor.putBoolean(LOGIN_PREF_KEY,true);
         editor.apply();
 
-        Log.e("TOKN",token);
-
-        Log.e("EndAuth","OK");
         openMain();
         progressDialog.dismiss();
     }
@@ -166,8 +160,6 @@ public class LoginActivity extends AccountAuthenticatorActivity {
                 SharedPreferences.Editor editor=sharedPreferences.edit();
                 editor.putString(USER_PREF_KEY_TOKEN,response.substring(bInd,lInd));
                 editor.apply();
-                Log.e("POstResponse", response);
-                Log.e("Token", response.substring(bInd,lInd));
 
                 sendUserRequest(response.substring(bInd,lInd));
 
@@ -203,7 +195,6 @@ public class LoginActivity extends AccountAuthenticatorActivity {
                     SharedPreferences.Editor editor=sharedPreferences.edit();
                     editor.putString(USER_PREF_KEY_LOGIN,jsonObject.getString("login"));
                     editor.putString(USER_PREF_KEY_AVATAR,jsonObject.getString("avatar_url"));
-                    Log.e("AVATAR",jsonObject.getString("avatar_url"));
                     editor.apply();
 
                     endAuth(jsonObject.getString("login"));
@@ -216,12 +207,10 @@ public class LoginActivity extends AccountAuthenticatorActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                // Log.e("ErrorPost.Response", error.getMessage());
             }
         });
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
-        Log.e("LOGIN",sharedPreferences.getString(USER_PREF_KEY_LOGIN,""));
 
     }
 

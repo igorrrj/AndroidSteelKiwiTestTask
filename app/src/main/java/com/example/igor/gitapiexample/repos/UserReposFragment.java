@@ -89,7 +89,7 @@ public class UserReposFragment extends Fragment {
                             sendUserRepoRequest(token);
                         }
                     } catch (Exception e) {
-                        Log.e("TEST", e.getMessage(), e);
+                        Log.e("GetTokenFromRepoException", e.getMessage(), e);
 
                     }
                 }

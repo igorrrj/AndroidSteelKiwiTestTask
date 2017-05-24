@@ -46,7 +46,6 @@ public class MainActivity extends AppCompatActivity
 
         SharedPreferences loginPreferences = getSharedPreferences(LOGIN_PREFERENCES,MODE_PRIVATE);
         boolean ans=loginPreferences.getBoolean(LOGIN_PREF_KEY,false);
-        Log.e("Bool",ans+"");
 
         if(!loginPreferences.getBoolean(LOGIN_PREF_KEY,false)){
            openLoginScreen();
@@ -126,16 +125,12 @@ public class MainActivity extends AppCompatActivity
                     accountManager.removeAccountExplicitly(account);
                 }
             }
-            Log.e("ACCOUNTMainActivity",gitHubAccounts.length+"");
-
             Intent in = new Intent(MainActivity.this, LoginActivity.class);
             in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
                     | IntentCompat.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(in);
             finish();
-            Log.e("EXIT","true");
             return false;
-
         }
 
         try {

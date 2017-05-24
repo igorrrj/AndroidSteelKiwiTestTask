@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.SearchView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -72,7 +71,6 @@ public class SearchFragment extends Fragment {
 
                 if(query.contains(" "))
                     query=query.replace(' ','+');
-                Log.e("QueryTEXT",query);
                 sendRequest(query);
 
                 return false;
@@ -93,7 +91,6 @@ public class SearchFragment extends Fragment {
         StringRequest stringRequest = new StringRequest(url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.e("Response", response + "");
                 parseRepo(response);
             }
         }, new Response.ErrorListener() {
