@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">GitApiExample</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="dialog_message">Loading...</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="oauthUrl">https://github.com/login/oauth/authorize</string>
+    <string name="client_id">b8a0d5e4bdc617ea1591</string>
+    <string name="client_secret">09604322f895f1779e1950c4d249eea877af1606</string>
+    <string name="callbackUrl">http://localhost:4567/callback</string>
+    <string name="redirectUrl">http://Auth.com/path</string>
+    <string name="scopes">user</string>
+    <string name="responseType">token</string>
+
+    <string name="action_log_in">Click on Log in button to log in to your Github account</string>
+    <string name="accountType">igor.com.github</string>
+    <string name="about">Developed by Skirky Igor, the student of Vinnitsa National Technical University</string>
+
+
+</resources>

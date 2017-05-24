@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:background="@android:color/transparent"
+    android:padding="10dp">
+
+
+    <LinearLayout
+        android:layout_width="330dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imageViewPhone"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/icon_repo"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="5dp">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20sp"
+                >
+                <TextView
+                    android:id="@+id/full_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/Black"
+                    android:text="fuel/depot "
+                    android:textSize="12dp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_marginTop="5dp"
+                    android:id="@+id/description"
+                    android:textSize="12dp"
+                    android:textColor="@color/DGrey"
+                    android:maxLength="48"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="FuelPHP's dochub application. Get your info here!"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:gravity="center_vertical"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20sp"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/language"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PHP"
+                    android:textColor="@color/Grey"
+                    android:textSize="12dp"
+                    android:textStyle="bold"/>
+                <ImageView
+                    android:layout_marginLeft="20sp"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:src="@drawable/ic_star"
+                    />
+                <TextView
+                    android:layout_marginLeft="3sp"
+                    android:id="@+id/stargazers_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="56"
+                    android:textColor="@color/Grey"
+                    android:textSize="12dp"
+                    android:textStyle="bold"/>
+                <ImageView
+                    android:layout_marginLeft="20sp"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:src="@drawable/fork"
+                    />
+                <TextView
+                    android:layout_marginLeft="3sp"
+                    android:id="@+id/forks"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="29"
+                    android:textColor="@color/Grey"
+                    android:textSize="12dp"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </LinearLayout>
+</LinearLayout>

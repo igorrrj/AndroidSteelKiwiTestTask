@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:id="@+id/no_matches_text"
+        android:visibility="gone"
+        android:layout_weight="1"
+        android:textSize="16dp"
+        android:gravity="center"
+        android:text="No result matches"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+    <ListView
+        android:id="@+id/listViewSReps"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:cacheColorHint="@android:color/transparent"
+        android:divider="@color/Grey"
+        android:dividerHeight="1sp"
+        android:listSelector="@android:color/transparent" />
+
+
+</LinearLayout>
